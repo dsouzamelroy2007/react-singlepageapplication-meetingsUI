@@ -1,10 +1,10 @@
 
-function Home(){
+function Home(props){
+    const user = props.user;
     const biggerLead = {
         fontSize: 1.4 + 'em',
         fontWeight: 200
       };
-
     return (
     <div className="container text-center">
         <div className="row justify-content-center">
@@ -25,16 +25,22 @@ function Home(){
               way to learn <a href="https://reactjs.org/">React </a> 
                with <a href="https://firebase.google.com">Firebase</a>.
             </p>
-
-            <a
-              href="/register"
-              className="btn btn-outline-primary mr-2"
-            >
-              Register
-            </a>
-            <a href="/login" className="btn btn-outline-primary mr-2">
-              Log In
-            </a>
+           
+              {user == null &&  (         
+             <span> 
+              <a
+                 href="/register"
+                 className="btn btn-outline-primary mr-2"
+               >
+                 Register
+               </a>
+               <a href="/login" className="btn btn-outline-primary mr-2">
+                 Log In
+               </a>
+               </span>
+              )}
+         
+  
             <a href="/meetings" className="btn btn-primary">
               Meetings
             </a>

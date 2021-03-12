@@ -8,6 +8,7 @@ import Login from './Login';
 
 import { Router } from "@reach/router";
 import firebase from "./Firebase";
+import Register from './Register';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
          <Router>
            <Home path="/" user={user}/>
            <Login path="/login" user={user}/>
+           <Register path="/register" user={user}/>
          </Router>
         
     </div>

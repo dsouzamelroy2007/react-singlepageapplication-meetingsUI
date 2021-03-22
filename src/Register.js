@@ -1,4 +1,5 @@
 import {useState} from "react";
+import FormError from "./FormError";
 
 function Register(){
  
@@ -7,13 +8,16 @@ function Register(){
             displayName: '',
             email: '',
             passOne : '',
-            passTwo : ''
-       
+            passTwo : '',
+            errorMsg : null
         }
         );
    
     const updateValues = ({target : {name, value}}) => {
         setFormData({...formData, [name]: value});
+        if(formData.passOne !== formData.passTwo){
+            formData.errorMsg = "Passwords do not match";
+        }
     };
         
 return(
@@ -25,6 +29,11 @@ return(
             <div className="card-body">
               <h3 className="font-weight-light mb-3">Register</h3>
               <div className="form-row">
+                  {formData.errorMsg != null ? (
+                    <FormError
+                       theMessage={this.state.errorMessage}
+                     />
+                  ) : null}
                 <section className="col-sm-12 form-group">
                   <label
                     className="form-control-label sr-only"

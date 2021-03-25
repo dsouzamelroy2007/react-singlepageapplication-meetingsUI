@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import FormError from "./FormError";
+import firebase from "./Firebase";
 
 function Register(){
  
@@ -26,9 +27,30 @@ function Register(){
         setFormData({...formData, [name]: value});
 
     };
+
+    const handleSubmit = (e) => {
+        var registrationInfo = {
+            displayName : formData.displayName,
+            email : formData.email,
+            password : formData.passOne
+        }
+        firebase.auth().createUserWithEmailAndPassword(
+            registrationInfo.email,
+            registrationInfo.password
+        ).catch(error => {
+            if(error.message != null){
+                console.log(error);
+                setFormData({...formData, 'errorMsg': error.message})
+            }else{
+                setFormData({...formData, 'errorMsg': null})
+            }
+        })
+
+        e.preventDefault();
+    }
         
 return(
-    <form className="mt-3">
+    <form className="mt-3" onSubmit = {handleSubmit}>
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-lg-8">

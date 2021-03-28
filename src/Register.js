@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import FormError from "./FormError";
 import firebase from "./Firebase";
 
-function Register(){
+function Register(props){
  
     const [formData,setFormData] = useState(
         {
@@ -44,6 +44,8 @@ function Register(){
             }else{
                 setFormData({...formData, 'errorMsg': null})
             }
+        }).then(() => {
+            props.registerUser(formData.displayName);
         })
 
         e.preventDefault();

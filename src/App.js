@@ -49,17 +49,31 @@ function App() {
     });
   };
 
+  function logoutUser(e) {
+    e.preventDefault();
+
+    setUser({
+      userObj : null,
+      displayName : null,
+      uuid : null
+    });
+
+    firebase.auth().signOut().then( () => {
+      navigate("/login")
+    })
+  }
+
   return (
     <div>
-        <Navigation user={user}/>
+        <Navigation user={user} logoutUser = {logoutUser}/>
         {user.displayName && (
-           <Welcome userName={user.displayName}/>
+           <Welcome userName={user.displayName} logoutUser = {logoutUser}/>
           
          )}
          <Router>
            <Home path="/" user={user}/>
-           <Login path="/login" user={user}/>
-           <Register path="/register" registerUser={registerUser}/>
+           <Login path="/login" user={user} logoutUser = {logoutUser}/>
+           <Register path="/register" registerUser={registerUser} />
            <Meetings path="/meetings" />
 
          </Router>

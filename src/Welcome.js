@@ -1,3 +1,5 @@
+import { Link } from "@reach/router";
+
 function Welcome(props){
     const {userName} = props;
     return (
@@ -6,9 +8,9 @@ function Welcome(props){
           Welcome {userName}
         </span>
         ,
-        <a href="/" className="font-weight-bold text-primary pl-1">
+        <Link to="/login" className="font-weight-bold text-primary pl-1" onClick = {e => props.logoutUser(e)}>
           log out
-        </a>
+        </Link>
       </div>
     );
 }

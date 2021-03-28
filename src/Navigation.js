@@ -25,7 +25,7 @@ function Navigation(props){
               </Link>
             )}
             {user && (
-              <Link className="nav-item nav-link" to="/login">
+              <Link className="nav-item nav-link" to="/login" onClick = {e => props.logoutUser(e)}>
                 log out
               </Link>
             )}
